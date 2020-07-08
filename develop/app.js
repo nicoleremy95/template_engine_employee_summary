@@ -10,10 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/html_renderer");
 
-// const managerArray = [];
-// const engineerArray = [];
-// const internArray = [];
-const employees = [];
+const employeeArray = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -46,7 +43,14 @@ function Employee() {
 
             case "done!":
                 console.log("create website!")
-                render(employees);
+                var htmlstring = render(employeeArray);
+                console.log(htmlstring)
+                fs.writeFile("team.html", htmlstring, function(err) {
+                    if (err) {
+                      return console.log(err);
+                    }
+                    console.log("Success!");
+                  });
                 break;
         }
     })
@@ -79,8 +83,8 @@ function managerFunc(){
         const newManager = new Manager(name, id, email, officeNumber)
         
         
-        employees.push(newManager);
-        console.log(employees)
+        employeeArray.push(newManager);
+        console.log(employeeArray)
         Employee();
     })
    
@@ -112,8 +116,8 @@ function engineerFunc(){
     ]).then(function({name,id,email,github}){
         const newEngineer = new Engineer (name, id, email, github)
         
-        employees.push(newEngineer);
-        console.log(employees)
+        employeeArray.push(newEngineer);
+        console.log(employeeArray)
         Employee();
     })
     
@@ -145,13 +149,15 @@ function internFunc(){
     ]).then(function({name,id,email,school}){
         const newIntern = new Intern (name, id, email, school)
         
-        employees.push(newIntern);
-        console.log(employees)
+        employeeArray.push(newIntern);
+        console.log(employeeArray)
         Employee();
     })
     
 }   
 Employee(); 
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
