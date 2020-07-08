@@ -10,6 +10,9 @@ const path = require("path");
 
 // const render = require("./lib/htmlRenderer");
 
+const managerArray = [];
+const engineerArray = [];
+const internArray = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -71,11 +74,13 @@ function managerFunc(){
             message: "what is your manager's office number?"
         }
     ]).then(function({name,id,email,officeNumber}){
-       
         const newManager = new Manager(name, id, email, officeNumber)
         console.log(newManager)
+        managerArray.push(newManager)
+        console.log(managerArray)
+        Employee();
     })
-    // Employee();
+   
 }
 
 function engineerFunc(){
@@ -102,11 +107,13 @@ function engineerFunc(){
             message: "what is your engineer's github username?"
         }
     ]).then(function({name,id,email,github}){
-       
         const newEngineer = new Engineer (name, id, email, github)
         console.log(newEngineer)
+        engineerArray.push(newEngineer)
+        console.log(engineerArray)
+        Employee();
     })
-    // Employee();
+    
 }
 
 function internFunc(){
@@ -133,11 +140,13 @@ function internFunc(){
             message: "what school does your intern go to?"
         }
     ]).then(function({name,id,email,school}){
-       
         const newIntern = new Manager(name, id, email, school)
         console.log(newIntern)
+        internArray.push(newIntern)
+        console.log(internArray)
+        Employee();
     })
-    // Employee();
+    
 }   
 Employee();       
 
