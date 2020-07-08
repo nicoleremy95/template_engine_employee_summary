@@ -16,21 +16,6 @@ const path = require("path");
 function Employee() {
     inquirer.prompt([
         {
-            type: "input",
-            name: "name",
-            message: "What is your employee name?"
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "what is your employee id?"
-        },
-        {
-            type: "input",
-            name:"email",
-            message:"what is your employee email?"
-        },
-        {
             type: "list",
             name: "role",
             message: "What is your employee's role?",
@@ -67,10 +52,29 @@ function managerFunc(){
     inquirer.prompt([
         {
             type: "input",
+            name: "name",
+            message: "What is your employee name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "what is your employee id?"
+        },
+        {
+            type: "input",
+            name:"email",
+            message:"what is your employee email?"
+        },
+        {
+            type: "input",
             name: "officeNumber",
             message: "what is your manager's office number?"
         }
-    ])
+    ]).then(function({name,id,email,officeNumber}){
+       
+        const newManager = new Manager(name, id, email, officeNumber)
+        console.log(newManager)
+    })
     // Employee();
 }
 
@@ -79,10 +83,29 @@ function engineerFunc(){
     inquirer.prompt([
         {
             type: "input",
+            name: "name",
+            message: "What is your employee name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "what is your employee id?"
+        },
+        {
+            type: "input",
+            name:"email",
+            message:"what is your employee email?"
+        },
+        {
+            type: "input",
             name: "github",
             message: "what is your engineer's github username?"
         }
-    ])
+    ]).then(function({name,id,email,github}){
+       
+        const newEngineer = new Engineer (name, id, email, github)
+        console.log(newEngineer)
+    })
     // Employee();
 }
 
@@ -91,10 +114,29 @@ function internFunc(){
     inquirer.prompt([
         {
             type: "input",
+            name: "name",
+            message: "What is your employee name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "what is your employee id?"
+        },
+        {
+            type: "input",
+            name:"email",
+            message:"what is your employee email?"
+        },
+        {
+            type: "input",
             name: "school",
             message: "what school does your intern go to?"
         }
-    ])
+    ]).then(function({name,id,email,school}){
+       
+        const newIntern = new Manager(name, id, email, school)
+        console.log(newIntern)
+    })
     // Employee();
 }   
 Employee();       
