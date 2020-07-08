@@ -3,16 +3,17 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
-// const fs = require("fs");
+const fs = require("fs");
 
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-// const render = require("./lib/htmlRenderer");
+const render = require("./lib/html_renderer");
 
-const managerArray = [];
-const engineerArray = [];
-const internArray = [];
+// const managerArray = [];
+// const engineerArray = [];
+// const internArray = [];
+const employees = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -45,6 +46,7 @@ function Employee() {
 
             case "done!":
                 console.log("create website!")
+                render(employees);
                 break;
         }
     })
@@ -75,9 +77,10 @@ function managerFunc(){
         }
     ]).then(function({name,id,email,officeNumber}){
         const newManager = new Manager(name, id, email, officeNumber)
-        console.log(newManager)
-        managerArray.push(newManager)
-        console.log(managerArray)
+        
+        
+        employees.push(newManager);
+        console.log(employees)
         Employee();
     })
    
@@ -108,9 +111,9 @@ function engineerFunc(){
         }
     ]).then(function({name,id,email,github}){
         const newEngineer = new Engineer (name, id, email, github)
-        console.log(newEngineer)
-        engineerArray.push(newEngineer)
-        console.log(engineerArray)
+        
+        employees.push(newEngineer);
+        console.log(employees)
         Employee();
     })
     
@@ -140,20 +143,22 @@ function internFunc(){
             message: "what school does your intern go to?"
         }
     ]).then(function({name,id,email,school}){
-        const newIntern = new Manager(name, id, email, school)
-        console.log(newIntern)
-        internArray.push(newIntern)
-        console.log(internArray)
+        const newIntern = new Intern (name, id, email, school)
+        
+        employees.push(newIntern);
+        console.log(employees)
         Employee();
     })
     
 }   
-Employee();       
-
-
+Employee(); 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+      
+
+
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
