@@ -43,14 +43,60 @@ function Employee() {
 
             case "done!":
                 console.log("create website!")
-                var htmlstring = render(employeeArray);
-                console.log(htmlstring)
-                fs.writeFile("team.html", htmlstring, function(err) {
-                    if (err) {
-                      return console.log(err);
-                    }
-                    console.log("Success!");
-                  });
+                if(employeeArray === undefined || employeeArray.length == 0){
+                    console.log("please choose an option and add employee info")
+                    Employee();
+                    
+                }else{
+                    var htmlstring = render(employeeArray);
+                    console.log(htmlstring)
+                    fs.writeFile("team.html", htmlstring, function(err) {
+                        if (err) {
+                          return console.log(err);
+                        }
+                        console.log("Success!");
+                      }); 
+                }
+                break;
+        }
+    })
+}
+
+function noManagerFunc() {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "role",
+            message: "What is your employee's role?",
+            choices: ["engineer", "intern", "done!"]
+        }
+    ]).then(function({role}){
+        console.log(role)
+        switch (role){
+            default: 
+                console.log("done for now")
+                break;
+
+            case "engineer":
+                engineerFunc();
+                break;
+
+            case "intern":
+                internFunc();
+                break;
+
+            case "done!":
+                console.log("create website!")
+                
+                    var htmlstring = render(employeeArray);
+                    console.log(htmlstring)
+                    fs.writeFile("team.html", htmlstring, function(err) {
+                        if (err) {
+                          return console.log(err);
+                        }
+                        console.log("Success!");
+                      });
+                
                 break;
         }
     })
@@ -81,11 +127,9 @@ function managerFunc(){
         }
     ]).then(function({name,id,email,officeNumber}){
         const newManager = new Manager(name, id, email, officeNumber)
-        
-        
         employeeArray.push(newManager);
         console.log(employeeArray)
-        Employee();
+        noManagerFunc();
     })
    
 }
@@ -118,7 +162,7 @@ function engineerFunc(){
         
         employeeArray.push(newEngineer);
         console.log(employeeArray)
-        Employee();
+        noManagerFunc();
     })
     
 }
@@ -151,7 +195,7 @@ function internFunc(){
         
         employeeArray.push(newIntern);
         console.log(employeeArray)
-        Employee();
+        noManagerFunc();
     })
     
 }   
