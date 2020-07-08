@@ -11,26 +11,64 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/html_renderer");
 
 const employeeArray = [];
+const validator = async (input) => {
+    if (input ==='') {
+        console.log('Please provide a response') ;
+    } else return true; 
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+async function managerFunc(){
+    console.log("manager function");
+    await inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Hi Manager. What is your name?",  
+            validate: validator 
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "what is your employee id?",
+            validate: validator
+        },
+        {
+            type: "input",
+            name:"email",
+            message:"what is your employee email?",
+            validate: validator
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "what is your manager office number?",
+            validate: validator
+            
+        }
+    ]).then(function({name,id,email,officeNumber}){
+        const newManager = new Manager(name, id, email, officeNumber)
+        employeeArray.push(newManager);
+        console.log(employeeArray)
+        Employee();
+    })
+   
+}
+
 function Employee() {
     inquirer.prompt([
         {
             type: "list",
             name: "role",
-            message: "What is your employee's role?",
-            choices: ["manager", "engineer", "intern", "done!"]
+            message: "Now time to update your employees! What is your employee's role?",
+            choices: [ "engineer", "intern", "Done! Make me web page please"]
         }
     ]).then(function({role}){
         console.log(role)
         switch (role){
             default: 
                 console.log("done for now")
-                break;
-
-            case "manager":
-                managerFunc();
                 break;
 
             case "engineer":
@@ -50,7 +88,7 @@ function Employee() {
                 }else{
                     var htmlstring = render(employeeArray);
                     console.log(htmlstring)
-                    fs.writeFile("team.html", htmlstring, function(err) {
+                    fs.writeFile(outputPath, htmlstring, function(err) {
                         if (err) {
                           return console.log(err);
                         }
@@ -62,144 +100,82 @@ function Employee() {
     })
 }
 
-function noManagerFunc() {
-    inquirer.prompt([
-        {
-            type: "list",
-            name: "role",
-            message: "What is your employee's role?",
-            choices: ["engineer", "intern", "done!"]
-        }
-    ]).then(function({role}){
-        console.log(role)
-        switch (role){
-            default: 
-                console.log("done for now")
-                break;
 
-            case "engineer":
-                engineerFunc();
-                break;
 
-            case "intern":
-                internFunc();
-                break;
-
-            case "done!":
-                console.log("create website!")
-                
-                    var htmlstring = render(employeeArray);
-                    console.log(htmlstring)
-                    fs.writeFile("team.html", htmlstring, function(err) {
-                        if (err) {
-                          return console.log(err);
-                        }
-                        console.log("Success!");
-                      });
-                
-                break;
-        }
-    })
-}
-
-function managerFunc(){
-    console.log("manager function");
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "What is your employee name?"
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "what is your employee id?"
-        },
-        {
-            type: "input",
-            name:"email",
-            message:"what is your employee email?"
-        },
-        {
-            type: "input",
-            name: "officeNumber",
-            message: "what is your manager's office number?"
-        }
-    ]).then(function({name,id,email,officeNumber}){
-        const newManager = new Manager(name, id, email, officeNumber)
-        employeeArray.push(newManager);
-        console.log(employeeArray)
-        noManagerFunc();
-    })
-   
-}
-
-function engineerFunc(){
+async function engineerFunc(){
     console.log("engineer function");
-    inquirer.prompt([
+    await inquirer.prompt([
         {
             type: "input",
             name: "name",
-            message: "What is your employee name?"
+            message: "What is your employee name?",
+            validate: validator
         },
         {
             type: "input",
             name: "id",
-            message: "what is your employee id?"
+            message: "what is your employee id?",
+            validate: validator
         },
         {
             type: "input",
             name:"email",
-            message:"what is your employee email?"
+            message:"what is your employee email?",
+            validate: validator
         },
         {
             type: "input",
             name: "github",
-            message: "what is your engineer's github username?"
+            message: "what is your engineer's github username?",
+            validate: validator
         }
     ]).then(function({name,id,email,github}){
         const newEngineer = new Engineer (name, id, email, github)
         
         employeeArray.push(newEngineer);
         console.log(employeeArray)
-        noManagerFunc();
+        Employee();
     })
     
 }
 
-function internFunc(){
+async function internFunc(){
     console.log("intern function");
-    inquirer.prompt([
+    await inquirer.prompt([
         {
             type: "input",
             name: "name",
-            message: "What is your employee name?"
+            message: "What is your employee name?",
+            validate: validator
         },
         {
             type: "input",
             name: "id",
-            message: "what is your employee id?"
+            message: "what is your employee id?",
+            validate: validator
         },
         {
             type: "input",
             name:"email",
-            message:"what is your employee email?"
+            message:"what is your employee email?",
+            validate: validator
         },
         {
             type: "input",
             name: "school",
-            message: "what school does your intern go to?"
+            message: "what school does your intern go to?",
+            validate: validator
         }
     ]).then(function({name,id,email,school}){
         const newIntern = new Intern (name, id, email, school)
         
         employeeArray.push(newIntern);
         console.log(employeeArray)
-        noManagerFunc();
+        Employee();
     })
     
 }   
-Employee(); 
+managerFunc();
 
 
 // After the user has input all employees desired, call the `render` function (required
