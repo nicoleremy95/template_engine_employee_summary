@@ -1,6 +1,6 @@
-// const Manager = require("./lib/Manager");
-// const Engineer = require("./lib/Engineer");
-// const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 // const fs = require("fs");
@@ -15,41 +15,91 @@ const path = require("path");
 // and to create objects for each team member (using the correct classes as blueprints!)
 function Employee() {
     inquirer.prompt([
-    {
-        type: "list",
-        name: "role",
-        message: "What is your employee's role?",
-        choices: ["manager", "engineer", "intern"]
-    },
-    {
-        type: "input",
-        name: "name",
-        message: "What is your employee name?"
-    },
-    {
-        type: "input",
-        name: "id",
-        message: "what is your id?"
-    },
-    {
-        type: "input",
-        name:"email",
-        message:"what is your email?"
-    }
-    ]).then(function(answers){
-        let role = answers.role
+        {
+            type: "input",
+            name: "name",
+            message: "What is your employee name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "what is your employee id?"
+        },
+        {
+            type: "input",
+            name:"email",
+            message:"what is your employee email?"
+        },
+        {
+            type: "list",
+            name: "role",
+            message: "What is your employee's role?",
+            choices: ["manager", "engineer", "intern", "done!"]
+        }
+    ]).then(function({role}){
         console.log(role)
-        let nameAns = answers.name
-        console.log(nameAns)
-        let idAns = answers.id
-        console.log(idAns)
-        let emailAns = answers.email
-        console.log(emailAns)
+        switch (role){
+            default: 
+                console.log("done for now")
+                break;
+
+            case "manager":
+                managerFunc();
+                break;
+
+            case "engineer":
+                engineerFunc();
+                break;
+
+            case "intern":
+                internFunc();
+                break;
+
+            case "done!":
+                console.log("create website!")
+                break;
+        }
     })
-    
 }
-Employee();
-// empId();
+
+function managerFunc(){
+    console.log("manager function");
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "what is your manager's office number?"
+        }
+    ])
+    // Employee();
+}
+
+function engineerFunc(){
+    console.log("engineer function");
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "github",
+            message: "what is your engineer's github username?"
+        }
+    ])
+    // Employee();
+}
+
+function internFunc(){
+    console.log("intern function");
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "school",
+            message: "what school does your intern go to?"
+        }
+    ])
+    // Employee();
+}   
+Employee();       
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
