@@ -20,7 +20,7 @@ To test the functions, tests are also included in this package and each pass. To
 5. [Tests](#tests)
 6. [Questions](#questions)
 
-### Images of README Process
+### Images of Employee Profile Process
 
 ### Step 1
 
