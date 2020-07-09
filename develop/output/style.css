@@ -1,0 +1,15 @@
+body {
+    background-color:  #7268a6;
+}
+
+.engineer{
+    background-color: #d8e0bb;  
+    font-size: 100;
+}
+
+.intern{
+    background-color: #86a3c3;
+}
+.manager {
+    background-color: #b6ce7c;
+}

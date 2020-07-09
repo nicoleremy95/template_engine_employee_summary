@@ -79,7 +79,7 @@ function Employee() {
                 internFunc();
                 break;
 
-            case "done!":
+            case "Done! Make me web page please":
                 console.log("create website!")
                 if(employeeArray === undefined || employeeArray.length == 0){
                     console.log("please choose an option and add employee info")
@@ -92,7 +92,7 @@ function Employee() {
                         if (err) {
                           return console.log(err);
                         }
-                        console.log("Success!");
+                        console.log("Success! Web page made");
                       }); 
                 }
                 break;
