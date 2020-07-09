@@ -74,6 +74,6 @@ Please make sure to update tests as appropriate.
 
 
 ### Questions
-1. [Github](nicoleremy95)
+1. [Github](https://github.com/nicoleremy95)
     
     
