@@ -48,7 +48,8 @@ async function managerFunc(){
             
         }
     ]).then(function({name,id,email,officeNumber}){
-        const newManager = new Manager(name, id, email, officeNumber)
+        const managerCap = name.toUpperCase();
+        const newManager = new Manager(managerCap, id, email, officeNumber)
         employeeArray.push(newManager);
         console.log(employeeArray)
         Employee();
@@ -130,8 +131,8 @@ async function engineerFunc(){
             validate: validator
         }
     ]).then(function({name,id,email,github}){
-        const newEngineer = new Engineer (name, id, email, github)
-        
+        const engineerCap = name.toUpperCase();
+        const newEngineer = new Engineer (engineerCap, id, email, github)
         employeeArray.push(newEngineer);
         console.log(employeeArray)
         Employee();
@@ -167,8 +168,9 @@ async function internFunc(){
             validate: validator
         }
     ]).then(function({name,id,email,school}){
-        const newIntern = new Intern (name, id, email, school)
-        
+        const internCap = name.toUpperCase();
+        const schoolCap = school.toUpperCase();
+        const newIntern = new Intern (internCap, id, email, schoolCap)
         employeeArray.push(newIntern);
         console.log(employeeArray)
         Employee();
