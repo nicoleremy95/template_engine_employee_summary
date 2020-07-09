@@ -81,9 +81,8 @@ function Employee() {
                 break;
 
             case "Done! Make me web page please":
-                console.log("create website!")
-                if(employeeArray === undefined || employeeArray.length == 0){
-                    console.log("please choose an option and add employee info")
+                if(employeeArray.length == 1){
+                    console.log("please add information about your employees!")
                     Employee();
                     
                 }else{
