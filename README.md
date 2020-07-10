@@ -75,5 +75,8 @@ Please make sure to update tests as appropriate.
 
 ### Questions
 1. [Github](https://github.com/nicoleremy95)
+
+### Link to Video of Application
+1. [EMPLOYEE PROFILES](https://drive.google.com/file/d/1XIR5b5sHZqeSox2YTBNKxbk67N34_sH-/view?usp=sharing)
     
     
